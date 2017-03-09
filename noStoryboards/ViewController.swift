@@ -14,6 +14,10 @@ class ViewController: UIViewController {
     var homeScreenImageView: UIImageView! = nil
     var summaryView: UIView! = nil
     var custonWhiteColor = UIColor(red: 239/255, green: 239/255, blue: 239/255, alpha: 1.0)
+    var detailDescriptionLabel: UILabel! = nil
+    var bottomWrapperView: UIView! = nil
+    
+    var descriptionString: String = "Test String"
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -22,6 +26,8 @@ class ViewController: UIViewController {
         setupNavigation()
         setupImageView()
         setupSummaryView()
+        setupDetailDescriptionLabel()
+        setupBottomWrapperView()
         self.view.backgroundColor = UIColor.white
     }
     
@@ -120,6 +126,31 @@ class ViewController: UIViewController {
         let constraintsArray = [dateLabelHorizontalConstraint, dateLabelVerticalConstraint, dateLabelHeightConstraint, dateLabelWidthConstraint, titleLabelHorizontalConstraint, titleLabelVerticalConstraint, locationImageViewHeightConstraint, locationImageViewWidthConstraint, locationImageViewTopConstraint, locationImageViewLeadingConstraint, locationLabelLeadingConstraint, locationLabelCenterConstraint, clockImageViewWidthConstraint, clockImageViewHeightConstraint, clockImageViewTopConstraint, clockImageViewLeadingConstraint, clockLabelLeadingConstraint, clockLabelCenterConstraint]
 
         summaryView.addConstraints(constraintsArray)
+    }
+    
+    func setupDetailDescriptionLabel() {
+        detailDescriptionLabel = UILabel(frame: CGRect(x: 0, y: Double(summaryView.frame.maxY), width: Double(self.view.frame.width), height: Double(self.view.frame.height * 0.45)))
+        detailDescriptionLabel.numberOfLines = 0
+        detailDescriptionLabel.text = descriptionString
+        self.view.addSubview(detailDescriptionLabel)
+    }
+    
+    func setupBottomWrapperView() {
+        bottomWrapperView = UIView(frame: CGRect(x: 0, y: Double(detailDescriptionLabel.frame.maxY), width: Double(self.view.frame.width), height: Double(self.view.frame.height - detailDescriptionLabel.frame.maxY)))
+        bottomWrapperView.backgroundColor = UIColor.black
+        self.view.addSubview(bottomWrapperView)
+        
+        let ticketsButton = UIButton(type: .roundedRect)
+        ticketsButton.setTitle("Book Tickets", for: .normal)
+        ticketsButton.setTitleColor(UIColor.black, for: .normal)
+        ticketsButton.translatesAutoresizingMaskIntoConstraints = false
+        ticketsButton.backgroundColor = UIColor.yellow
+        bottomWrapperView.addSubview(ticketsButton)
+        
+        // MARK: - Book tickets button constraints
+        let ticketsButtonTrailingConstraint = NSLayoutConstraint(item: bottomWrapperView, attribute: .trailing, relatedBy: .equal, toItem: ticketsButton, attribute: .trailing, multiplier: 1.0, constant: 10)
+        let ticketsButtonAlignConstraint = NSLayoutConstraint(item: ticketsButton, attribute: .centerY, relatedBy: .equal, toItem: bottomWrapperView, attribute: .centerY, multiplier: 1.0, constant: 0)
+        bottomWrapperView.addConstraints([ticketsButtonTrailingConstraint, ticketsButtonAlignConstraint])
     }
 }
 
