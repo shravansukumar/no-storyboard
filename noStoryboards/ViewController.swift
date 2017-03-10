@@ -146,11 +146,17 @@ class ViewController: UIViewController {
         ticketsButton.translatesAutoresizingMaskIntoConstraints = false
         ticketsButton.backgroundColor = UIColor.yellow
         bottomWrapperView.addSubview(ticketsButton)
+        ticketsButton.addTarget(self, action: #selector(bookTicketsTapped), for: .touchUpInside)
         
         // MARK: - Book tickets button constraints
         let ticketsButtonTrailingConstraint = NSLayoutConstraint(item: bottomWrapperView, attribute: .trailing, relatedBy: .equal, toItem: ticketsButton, attribute: .trailing, multiplier: 1.0, constant: 10)
         let ticketsButtonAlignConstraint = NSLayoutConstraint(item: ticketsButton, attribute: .centerY, relatedBy: .equal, toItem: bottomWrapperView, attribute: .centerY, multiplier: 1.0, constant: 0)
         bottomWrapperView.addConstraints([ticketsButtonTrailingConstraint, ticketsButtonAlignConstraint])
+    }
+    
+     func bookTicketsTapped() {
+        let ticketsViewController = TicketsViewController()
+        self.navigationController?.pushViewController(ticketsViewController, animated: true)
     }
 }
 

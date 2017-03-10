@@ -12,6 +12,7 @@
 		A43A1FFB1E70191E00D3953B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A43A1FF91E70191E00D3953B /* Main.storyboard */; };
 		A43A1FFD1E70191E00D3953B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A43A1FFC1E70191E00D3953B /* Assets.xcassets */; };
 		A43A20001E70191E00D3953B /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A43A1FFE1E70191E00D3953B /* LaunchScreen.storyboard */; };
+		A4EC5BE31E7323CC008EB033 /* TicketsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A4EC5BE21E7323CC008EB033 /* TicketsViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -22,6 +23,7 @@
 		A43A1FFC1E70191E00D3953B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A43A1FFF1E70191E00D3953B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A43A20011E70191E00D3953B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A4EC5BE21E7323CC008EB033 /* TicketsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TicketsViewController.swift; path = ../TicketsViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,6 +58,7 @@
 			children = (
 				A43A1FF51E70191E00D3953B /* AppDelegate.swift */,
 				A43A1FF71E70191E00D3953B /* ViewController.swift */,
+				A4EC5BE21E7323CC008EB033 /* TicketsViewController.swift */,
 				A43A1FF91E70191E00D3953B /* Main.storyboard */,
 				A43A1FFC1E70191E00D3953B /* Assets.xcassets */,
 				A43A1FFE1E70191E00D3953B /* LaunchScreen.storyboard */,
@@ -138,6 +141,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A43A1FF81E70191E00D3953B /* ViewController.swift in Sources */,
+				A4EC5BE31E7323CC008EB033 /* TicketsViewController.swift in Sources */,
 				A43A1FF61E70191E00D3953B /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -300,6 +304,7 @@
 				A43A20061E70191E00D3953B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
