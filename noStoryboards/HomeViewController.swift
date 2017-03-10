@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  HomeViewController.swift
 //  noStoryboards
 //
 //  Created by Shravan Sukumar on 08/03/17.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class ViewController: UIViewController {
+class HomeViewController: UIViewController {
 
     // MARK: - Variables
     var homeScreenImageView: UIImageView! = nil

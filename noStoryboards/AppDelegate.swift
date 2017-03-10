@@ -22,9 +22,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     private func setupNavigatonController() {
-        let viewController = ViewController(nibName: nil, bundle: Bundle.main)
-        let navigationController = UINavigationController(rootViewController: viewController)
-        
+        let homeViewController = HomeViewController(nibName: nil, bundle: Bundle.main)
+        let navigationController = UINavigationController(rootViewController: homeViewController)
         navigationController.navigationBar.barTintColor = UIColor.black
         navigationController.navigationBar.titleTextAttributes = [NSForegroundColorAttributeName: UIColor.yellow]
         self.window?.rootViewController = navigationController
