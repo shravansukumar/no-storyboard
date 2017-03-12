@@ -12,6 +12,10 @@ class TicketsViewController: UIViewController {
     
     // MARK: - Variables and constants
     var tableView : UITableView!
+    var bottomWrapperView: UIView! = nil
+    var proceedButton = UIButton()
+    var totalTicketsLabel = UILabel()
+    var staticTotalTicketsLabel = UILabel()
 
     var eventDictionary = [
         ["ticketType": "Early Bird Couple", "price": "999", "lastDate": "ends in 13th march"],
@@ -28,8 +32,8 @@ class TicketsViewController: UIViewController {
 
         setupNavigation()
         setupTableView()
+        setupBottomWrapperView()
         self.view.backgroundColor = UIColor.white
-        
     }
     
     // MARK: - Methods
@@ -51,6 +55,55 @@ class TicketsViewController: UIViewController {
         tableView.separatorStyle = .none
         tableView.register(TicketsTableViewCell.self, forCellReuseIdentifier: cellReuseIdentifier)
         self.view.addSubview(tableView)
+    }
+    
+    func setupBottomWrapperView() {
+        bottomWrapperView = UIView()
+        bottomWrapperView.translatesAutoresizingMaskIntoConstraints = false
+        bottomWrapperView.backgroundColor = UIColor.black
+        
+        proceedButton.backgroundColor = UIColor.yellow
+        proceedButton.setTitleColor(UIColor.black, for: .normal)
+        proceedButton.setTitle("Proceed", for: .normal)
+        proceedButton.translatesAutoresizingMaskIntoConstraints = false
+        
+        totalTicketsLabel.text = "0"
+        totalTicketsLabel.textColor = UIColor.white
+        totalTicketsLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        staticTotalTicketsLabel.text = "Ticket(s)"
+        staticTotalTicketsLabel.textColor = UIColor.white
+        staticTotalTicketsLabel.translatesAutoresizingMaskIntoConstraints = false
+        
+        // MARK: - Bottom Wrapper View Constraints
+        let bottomViewBottomConstraint = NSLayoutConstraint(item: self.bottomLayoutGuide, attribute: .top, relatedBy: .equal, toItem: bottomWrapperView, attribute: .bottom, multiplier: 1, constant: 0)
+        let bottomViewTrailingConstraint = NSLayoutConstraint(item: self.view, attribute: .trailing, relatedBy: .equal, toItem: bottomWrapperView, attribute: .trailing, multiplier: 1, constant: 0)
+        let bottomViewLeadingConstraint = NSLayoutConstraint(item: bottomWrapperView, attribute: .leading, relatedBy: .equal, toItem: self.view, attribute: .leading, multiplier: 1, constant: 0)
+        let bottomViewHeightConstraint = NSLayoutConstraint(item: bottomWrapperView, attribute: .height, relatedBy: .equal, toItem: nil, attribute: .notAnAttribute, multiplier: 1, constant: 70)
+        
+        // MARK: - Proceed Button Constraints
+        let proceedButtonTrailingConstraint = NSLayoutConstraint(item: bottomWrapperView, attribute: .trailing, relatedBy: .equal, toItem: proceedButton, attribute: .trailing, multiplier: 1, constant: 10)
+        let proceedButtonCenterConstraint = NSLayoutConstraint(item: proceedButton, attribute: .centerY, relatedBy: .equal, toItem: bottomWrapperView, attribute: .centerY, multiplier: 1, constant: 0)
+        
+        // MARK: - Total Tickets Label Constraints
+        let totalTicketsLeadingConstraint = NSLayoutConstraint(item: totalTicketsLabel, attribute: .leading, relatedBy: .equal, toItem: bottomWrapperView, attribute: .leading, multiplier: 1, constant: 10)
+        let totalTicketsCenterConstraint = NSLayoutConstraint(item: totalTicketsLabel, attribute: .centerY, relatedBy: .equal, toItem: bottomWrapperView, attribute: .centerY, multiplier: 1, constant: 0)
+        
+        // MARK: - Static Total Tickets Label Constraints
+        let staticTotalTicketsCenterConstraint = NSLayoutConstraint(item: staticTotalTicketsLabel, attribute: .centerY, relatedBy: .equal, toItem: bottomWrapperView, attribute: .centerY, multiplier: 1, constant: 0)
+        let  staticTotalTicketsLeadingConstraint = NSLayoutConstraint(item: staticTotalTicketsLabel, attribute: .leading, relatedBy: .equal, toItem: totalTicketsLabel, attribute: .trailing, multiplier: 1, constant: 2)
+        
+        let bottomViewConstraintsArray = [bottomViewBottomConstraint,bottomViewTrailingConstraint, bottomViewLeadingConstraint,bottomViewHeightConstraint]
+        let bottomWrapperViewElementsConstraintsArray = [proceedButtonTrailingConstraint, proceedButtonCenterConstraint, totalTicketsLeadingConstraint,totalTicketsCenterConstraint,staticTotalTicketsCenterConstraint, staticTotalTicketsLeadingConstraint]
+        
+        self.view.addSubview(bottomWrapperView)
+        
+        bottomWrapperView.addSubview(proceedButton)
+        bottomWrapperView.addSubview(totalTicketsLabel)
+        bottomWrapperView.addSubview(staticTotalTicketsLabel)
+        
+        self.view.addConstraints(bottomViewConstraintsArray)
+        bottomWrapperView.addConstraints(bottomWrapperViewElementsConstraintsArray)
     }
 }
 
