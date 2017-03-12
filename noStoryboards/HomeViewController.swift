@@ -17,6 +17,7 @@ class HomeViewController: UIViewController {
     var detailDescriptionLabel: UILabel! = nil
     var bottomWrapperView: UIView! = nil
     
+    var navigationTitle: String = "2017 Holi - Rang Munch"
     var descriptionString: String = "Test String"
     
     // MARK: - Lifecycle
@@ -33,7 +34,7 @@ class HomeViewController: UIViewController {
     
     // MARK: - Methods
     func setupNavigation() {
-        navigationItem.title = "2017 Holi - Rang Munch"
+        navigationItem.title = navigationTitle
     }
 
     func setupImageView() {
@@ -156,6 +157,7 @@ class HomeViewController: UIViewController {
     
      func bookTicketsTapped() {
         let ticketsViewController = TicketsViewController()
+        ticketsViewController.sectionTitle = self.navigationTitle
         self.navigationController?.pushViewController(ticketsViewController, animated: true)
     }
 }
