@@ -44,10 +44,6 @@ class TicketsViewController: UIViewController {
         navigationItem.leftBarButtonItem?.image = navigationItem.leftBarButtonItem?.image?.withRenderingMode(.alwaysOriginal)
     }
     
-    func backButtonPressed() {
-        self.navigationController!.popViewController(animated: true)
-    }
-    
     func setupTableView() {
         tableView = UITableView(frame: UIScreen.main.bounds, style: .plain)
         tableView.delegate = self
@@ -63,9 +59,11 @@ class TicketsViewController: UIViewController {
         bottomWrapperView.backgroundColor = UIColor.black
         
         proceedButton.backgroundColor = UIColor.yellow
+        proceedButton.isEnabled = false
         proceedButton.setTitleColor(UIColor.black, for: .normal)
         proceedButton.setTitle("Proceed", for: .normal)
         proceedButton.translatesAutoresizingMaskIntoConstraints = false
+        proceedButton.addTarget(self, action: #selector(proceedButtonTapped), for: .touchUpInside)
         
         totalTicketsLabel.text = "0"
         totalTicketsLabel.textColor = UIColor.white
@@ -105,6 +103,17 @@ class TicketsViewController: UIViewController {
         self.view.addConstraints(bottomViewConstraintsArray)
         bottomWrapperView.addConstraints(bottomWrapperViewElementsConstraintsArray)
     }
+    
+    func backButtonPressed() {
+        self.navigationController!.popViewController(animated: true)
+    }
+    
+    func proceedButtonTapped() {
+        let attendeeDetailsViewController = AttendeeDetailsViewController()
+        navigationController?.pushViewController(attendeeDetailsViewController, animated: true)
+    }
+    
+
 }
 
 // MARK: - UITableViewDelegate
@@ -150,7 +159,30 @@ extension TicketsViewController: UITableViewDataSource {
         cell.ticketTypeLabel.text = cellObjects["ticketType"]!
         cell.priceLabel.text = cellObjects["price"]!
         cell.lastDateLabel.text = cellObjects["lastDate"]!
+        cell.delegate = self
         return cell
+    }
+}
+
+// MARK: - TicketsTableViewCellDelegate
+extension TicketsViewController: TicketsTableViewCellDelegate {
+    
+    func addTicket() {
+        proceedButton.isEnabled = true
+        var totalTickets = Int(totalTicketsLabel.text!)!
+        totalTickets = totalTickets + 1
+        totalTicketsLabel.text = String(totalTickets)
+    }
+    
+    func removeTicket() {
+        var totalTickets = Int(totalTicketsLabel.text!)!
+        if totalTickets > 0 {
+            totalTickets = totalTickets - 1
+            totalTicketsLabel.text = String(totalTickets)
+        } else {
+            proceedButton.isEnabled = false
+            totalTicketsLabel.text = String(0)
+        }
     }
 }
 

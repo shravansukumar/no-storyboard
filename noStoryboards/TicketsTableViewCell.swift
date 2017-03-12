@@ -8,7 +8,13 @@
 
 import UIKit
 
+protocol TicketsTableViewCellDelegate: class {
+    func addTicket()
+    func removeTicket()
+}
+
 class TicketsTableViewCell: UITableViewCell {
+    
 
     // MARK: - Variables
     var ticketTypeLabel = UILabel()
@@ -20,6 +26,9 @@ class TicketsTableViewCell: UITableViewCell {
     var plusButton = UIButton()
     var countLabel = UILabel()
     var defaultCountLabelText = 0
+    weak var delegate: TicketsTableViewCellDelegate?
+    
+    
     
     // MARK: - Lifecycle
     override init(style: UITableViewCellStyle, reuseIdentifier: String?) {
@@ -68,9 +77,9 @@ class TicketsTableViewCell: UITableViewCell {
         }
     }
     
-    
     func minusButtonTapped() {
         print("Minus Button Tapped")
+        delegate?.removeTicket()
         var ticketCount = Int(countLabel.text!)
         if ticketCount == 0 {
             minusButton.isEnabled = false
@@ -82,6 +91,7 @@ class TicketsTableViewCell: UITableViewCell {
     
     func plusButtonTapped() {
         print("Plus Button Tapped")
+        delegate?.addTicket()
         if minusButton.isEnabled == false {
             minusButton.isEnabled = true
         }
