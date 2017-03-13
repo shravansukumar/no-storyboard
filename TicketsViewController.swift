@@ -110,6 +110,7 @@ class TicketsViewController: UIViewController {
     
     func proceedButtonTapped() {
         let attendeeDetailsViewController = AttendeeDetailsViewController()
+        attendeeDetailsViewController.totalTickets = totalTicketsLabel.text!
         navigationController?.pushViewController(attendeeDetailsViewController, animated: true)
     }
     

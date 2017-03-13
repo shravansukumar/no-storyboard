@@ -78,7 +78,6 @@ class TicketsTableViewCell: UITableViewCell {
     }
     
     func minusButtonTapped() {
-        print("Minus Button Tapped")
         delegate?.removeTicket()
         var ticketCount = Int(countLabel.text!)
         if ticketCount == 0 {
@@ -90,7 +89,6 @@ class TicketsTableViewCell: UITableViewCell {
     }
     
     func plusButtonTapped() {
-        print("Plus Button Tapped")
         delegate?.addTicket()
         if minusButton.isEnabled == false {
             minusButton.isEnabled = true
